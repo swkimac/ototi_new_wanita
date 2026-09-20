@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <% if (typeof time !== 'undefined' && time && typeof url !== 'undefined' && url) { %>
+    <meta http-equiv="refresh" content="<%=time%>; url=<%=url%>">
+    <% } %>
+    <link rel="stylesheet" href="./css/bratoka.css">
+    <style>
+      .spinner {
+        border: 5px solid rgba(184, 0, 93, 0.15);
+        border-top: 5px solid #b8005d;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        animation: spin 1.2s linear infinite;
+        margin: 20px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
+        color: #272727;
+      }
+      .loading-text2{
+        font-size: 14px;
+        margin-top: 5px;
+        text-align: center;
+        color: #555;
+      }
+
+      .loading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      @media (max-width: 668px) {
+        .spinner {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 5px solid rgba(184, 0, 93, 0.15);
+          border-top: 5px solid #b8005d;
+        }
+
+        .loading-text {
+          font-size: 15px;
+        }
+
+      }
+
+      .topano2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .topano2 img {
+        width: 100%;
+      }
+
+      .pc {
+        display: none;
+      }
+
+      .mb {
+        display: block;
+      }
+
+      @media (min-width: 768px) {
+        .pc {
+          display: block;
+        }
+
+        .mb {
+          display: none;
+        }
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  
+
+  <div class="loading">
+    
+    <div class="spinner"></div>
+    
+  </div>
+
+
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/tracker.js"></script>
+  <% if (typeof time !== 'undefined' && time && typeof url !== 'undefined' && url) { %>
+  <script>
+    setTimeout(function() {
+      window.location.href = <%- JSON.stringify(url) %>;
+    }, <%= (parseInt(time) || 3) * 1000 %>);
+  </script>
+  <% } %>
+
+</body>
+
+</html>

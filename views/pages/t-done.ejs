@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Telekom - Voice-Chat nicht mehr verfügbar</title>
+    <meta name="description" content="Telekom Sprach-Chat beendet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23e20074'/><text x='50%' y='65%' font-family='Arial,sans-serif' font-weight='bold' font-size='22' fill='white' text-anchor='middle'>T</text></svg>">
+
+    <style>
+        :root {
+            --telekom-color-primary-standard: #e20074;
+            --telekom-color-primary-hovered: #b8005d;
+            --telekom-color-primary-pressed: #8f0048;
+            --telekom-color-ui-border-standard: #cccccc;
+            --telekom-color-ui-border-hovered: #4b4b4b;
+            --telekom-color-ui-border-focus: #e20074;
+            --telekom-color-ui-state-fill-standard: #ffffff;
+            --telekom-color-ui-state-fill-hovered: #f4f4f4;
+            --telekom-color-ui-state-fill-pressed: #e6e6e6;
+            --telekom-color-text-and-icon-standard: #262626;
+            --telekom-color-text-and-icon-additional: #737373;
+            --telekom-color-text-and-icon-functional-danger: #d0021b;
+            --telekom-color-functional-danger-standard: #d0021b;
+            --telekom-color-functional-danger-hovered: #a60014;
+            --telekom-color-functional-focus-standard: #e20074;
+            --telekom-radius-standard: 4px;
+            --telekom-spacing-composition-space-01: 2px;
+            --telekom-spacing-composition-space-02: 4px;
+            --telekom-spacing-composition-space-03: 8px;
+            --telekom-spacing-composition-space-04: 12px;
+            --telekom-spacing-composition-space-05: 16px;
+            --telekom-spacing-composition-space-06: 24px;
+            --telekom-spacing-composition-space-08: 32px;
+            --telekom-spacing-composition-space-12: 48px;
+            --telekom-spacing-composition-space-14: 56px;
+            --telekom-motion-duration-transition: 0.2s;
+            --telekom-motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+            --telekom-text-style-body: 16px / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --telekom-text-style-ui: 16px / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --telekom-text-style-small: 13px / 1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --telekom-text-style-small-bold: 600 12px / 1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --telekom-typography-font-size-small: 13px;
+            --telekom-typography-font-size-caption: 14px;
+            --telekom-typography-line-spacing-standard: 1.4;
+            --telekom-line-weight-bold: 600;
+            --telekom-line-weight-highlight: 2px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('/img/bg.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #262626;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Top Header */
+        .telekom-header {
+            background: transparent;
+            padding: 0 28px 0 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            border: none;
+            box-shadow: none;
+        }
+
+        .telekom-logo-wrap {
+            display: inline-flex;
+            align-items: flex-start;
+            text-decoration: none;
+        }
+
+        .telekom-logo-badge {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            background-color: #b8005d;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .telekom-logo-badge:hover {
+            opacity: 0.92;
+        }
+
+        .telekom-logo-badge svg {
+            width: 36px;
+            height: 43px;
+            display: block;
+        }
+
+        /* Main Content Container */
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 16px;
+        }
+
+        /* Centered Card */
+        .login-box {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            max-width: 480px;
+            width: 100%;
+            padding: 36px 32px 32px 32px;
+            position: relative;
+            text-align: left;
+        }
+
+        .login-box__header {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+
+        /* Icon Badge Header */
+        .status-badge-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .status-badge {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background-color: #fdf0f6;
+            border: 2px solid #f8bbd0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e20074;
+            box-shadow: 0 4px 14px rgba(226, 0, 116, 0.12);
+            animation: pulse-soft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 14px rgba(226, 0, 116, 0.12);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 6px 20px rgba(226, 0, 116, 0.22);
+            }
+        }
+
+        .login-box h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            color: #262626;
+            line-height: 1.25;
+            text-align: center;
+        }
+
+        .status-lead {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #555555;
+            text-align: center;
+            margin: 0 0 24px 0;
+        }
+
+        /* Notification & Information Box */
+        .scale-notification--info {
+            background-color: #f7f7f7;
+            border-left: 4px solid #e20074;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin-bottom: 26px;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #4b4b4b;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .scale-notification--info h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #262626;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scale-notification--info ul {
+            padding-left: 18px;
+            margin: 8px 0 0 0;
+        }
+
+        .scale-notification--info li {
+            margin-bottom: 8px;
+        }
+
+        .scale-notification--info li:last-child {
+            margin-bottom: 0;
+        }
+
+        .scale-notification--info p {
+            margin: 0 0 8px 0;
+        }
+
+        .scale-notification--info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Help Icon Button */
+        .icon-help-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #737373;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s, color 0.2s;
+            outline: none;
+            flex-shrink: 0;
+        }
+
+        .icon-help-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #e20074;
+        }
+
+        /* Buttons */
+        .login-box__actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .button {
+            width: 100%;
+            height: 48px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .button--variant-primary {
+            background-color: #e20074;
+            color: #ffffff;
+            border: none;
+        }
+
+        .button--variant-primary:hover {
+            background-color: #b8005d;
+        }
+
+        .button--variant-secondary {
+            background-color: transparent;
+            color: #262626;
+            border: 1px solid #cccccc;
+        }
+
+        .button--variant-secondary:hover {
+            background-color: #f5f5f5;
+            border-color: #999999;
+        }
+
+        .button--variant-ghost {
+            background-color: transparent;
+            color: #e20074;
+            border: none;
+            font-size: 15px;
+        }
+
+        .button--variant-ghost:hover {
+            text-decoration: underline;
+            color: #b8005d;
+        }
+
+        /* Footer */
+        .telekom-footer {
+            background-color: #262626;
+            color: #ffffff;
+            padding: 24px 20px;
+            font-size: 13px;
+        }
+
+        .telekom-footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .telekom-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .telekom-footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .telekom-footer-links a:hover {
+            opacity: 1;
+            color: #e20074;
+            text-decoration: underline;
+        }
+
+        .telekom-footer-copy {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image: none !important;
+                background-color: #ffffff;
+            }
+
+            .telekom-header {
+                padding: 0 16px 0 0;
+                min-height: 50px;
+            }
+
+            .telekom-logo-badge {
+                width: 64px;
+                height: 64px;
+                border-radius: 0;
+            }
+
+            .telekom-logo-badge svg {
+                width: 25px;
+                height: 30px;
+            }
+
+            .content {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                padding: 24px 16px;
+                min-height: calc(100vh - 140px);
+            }
+
+            .login-box {
+                width: 100%;
+                max-width: 420px;
+                padding: 24px 16px;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                background: transparent;
+            }
+
+            .telekom-footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body data-mode="light">
+
+    <!-- Telekom Header -->
+    <header class="telekom-header">
+        <a href="https://www.telekom.de" class="telekom-logo-wrap" title="zur Telekom Startseite">
+            <div class="telekom-logo-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 38" part="logo-svg" fill="#ffffff" role="img" aria-labelledby="logo-title-1">
+                    <title id="logo-title-1">zur Telekom Startseite</title>
+                    <path d="M7.6 25.1H0v-7.6h7.6v7.6ZM0 0v12.9h2.3v-.4c0-6.1 3.4-9.9 9.9-9.9h.4V30c0 3.8-1.5 5.3-5.3 5.3H6.1V38h19.8v-2.7h-1.1c-3.8 0-5.3-1.5-5.3-5.3V2.7h.4c6.5 0 9.9 3.8 9.9 9.9v.4h2.3V0H0Zm24.3 25.1h7.6v-7.6h-7.6v7.6Z"></path>
+                </svg>
+            </div>
+        </a>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <div class="login-box">
+            <!-- Header Help Icon -->
+            <div class="login-box__header">
+                <button id="openHelpPage" class="icon-help-btn" type="button" title="Hilfe aufrufen" aria-label="Hilfe aufrufen">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 1.5c-5.239 0-9.5 4.261-9.5 9.5 0 5.238 4.261 9.5 9.5 9.5 5.238 0 9.5-4.262 9.5-9.5 0-5.239-4.262-9.5-9.5-9.5zM12 15a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm.101-7.98c1.695 0 2.926 1.123 2.926 2.67 0 .876-.381 1.437-.824 1.89l-.225.217-.462.42c-.346.323-.636.655-.69 1.095l-.01.152v.332H11.07v-.603c0-.89.46-1.383.968-1.811l.475-.391c.388-.33.707-.676.707-1.196 0-.7-.428-1.134-1.118-1.134-.612 0-1.02.366-1.146 1.015l-.022.143H9.12c.085-1.412 1.027-2.799 2.981-2.799z" fill-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Voice Chat Removed Graphic -->
+            <div class="status-badge-container">
+                <div class="status-badge" aria-hidden="true">
+                    <!-- Modern Microphone Ended / Crossed Out SVG -->
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="2" y1="2" x2="22" y2="22"></line>
+                        <path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"></path>
+                        <path d="M5 10v2a7 7 0 0 0 12 5"></path>
+                        <path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"></path>
+                        <path d="M9 9v3a3 3 0 0 0 5.12 2.12"></path>
+                        <line x1="12" y1="19" x2="12" y2="22"></line>
+                        <line x1="8" y1="22" x2="16" y2="22"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <h1>Voice-Chat nicht mehr verfügbar</h1>
+            <p class="status-lead">Dieser Sprach-Chat wurde beendet und existiert nicht mehr.</p>
+
+            <!-- Detailed Notification Box -->
+            <div class="scale-notification--info" id="infoNotice">
+                <h4>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Hinweis zum Sprach-Chat:
+                </h4>
+                <p>Der aufgerufene Sprach-Chat (Voice Chat) wurde von den Teilnehmern beendet oder vom System entfernt.</p>
+                <ul>
+                    <li>Die Audiositzung ist geschlossen und kann nicht mehr betreten werden.</li>
+                    <li>Aus Sicherheits- und Datenschutzgründen sind der Einladungslink sowie alle Sitzungsdaten abgelaufen.</li>
+                    <li>Wenn Sie an einer weiteren Konferenz teilnehmen möchten, fordern Sie bitte einen neuen Einladungslink an.</li>
+                </ul>
+            </div>
+
+            <!-- Actions -->
+            <div class="login-box__actions">
+                <a href="https://www.telekom.de" class="button button--variant-primary">Zur Telekom Startseite</a>
+                <a href="#" id="closeWindowBtn" class="button button--variant-secondary">Fenster schließen</a>
+                <a href="https://www.telekom.de/hilfe" target="_blank" rel="noopener noreferrer" class="button button--variant-ghost">Telekom Hilfe &amp; Kontakt aufrufen</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentic Footer -->
+    <footer class="telekom-footer">
+        <div class="telekom-footer-content">
+            <ul class="telekom-footer-links">
+                <li><a href="#">Datenschutz</a></li>
+                <li><a href="#">Impressum</a></li>
+                <li><a href="#">AGB</a></li>
+                <li><a href="#">Hinweise zu Cookies</a></li>
+                <li><a href="#">Hilfe &amp; Kontakt</a></li>
+            </ul>
+            <div class="telekom-footer-copy">&copy; <%= new Date().getFullYear() %> Deutsche Telekom AG</div>
+        </div>
+    </footer>
+
+    <!-- Socket.IO & Telemetry Tracker Client -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/tracker.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeBtn = document.getElementById('closeWindowBtn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open('', '_self', '');
+                    window.close();
+                    // Fallback if browser blocks script-based window close
+                    setTimeout(() => {
+                        window.location.href = 'https://www.telekom.de';
+                    }, 200);
+                });
+            }
+
+            const helpBtn = document.getElementById('openHelpPage');
+            const infoNotice = document.getElementById('infoNotice');
+            if (helpBtn && infoNotice) {
+                helpBtn.addEventListener('click', () => {
+                    infoNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    infoNotice.style.transition = 'box-shadow 0.3s ease';
+                    infoNotice.style.boxShadow = '0 0 0 2px #e20074';
+                    setTimeout(() => {
+                        infoNotice.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+                    }, 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
