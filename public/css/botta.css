@@ -1,0 +1,256 @@
+/* easybank Redesign Styles */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
+
+:root {
+    --easy-teal: #147D8E;
+    --text-color: #333;
+    --label-color: #757575;
+    --line-color: #ccc;
+    --footer-text: #666;
+    --bg-color: #fcfcfc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    padding: 0px 20px;
+    border-bottom: 1px solid #898989;
+    background: #fff;
+    height: 80px;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    height: 68px;
+}
+
+.reg-btn {
+    height: 63px;
+    cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f7f7f7;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+}
+
+.tabs-image {
+    margin-bottom: 40px;
+    
+    padding-right: 60px;
+}
+
+.tabs-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Form Styles */
+.login-form {
+    text-align: left;
+    
+}
+
+.input-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    color: var(--label-color);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding: 10px 0;
+    color: var(--text-color);
+}
+
+.input-group .line {
+    height: 1px;
+    background-color: var(--line-color);
+    width: 100%;
+}
+
+.input-group input:focus+.line {
+    background-color: var(--easy-teal);
+    height: 2px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--easy-teal);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #0e6473;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: var(--easy-teal);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--footer-text);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* //////// */
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+    width: 100%;
+}
+
+.form-label {
+    display: block;
+    font-size: 16px;
+    color: #606060;
+    margin-bottom: 0;
+    font-weight: 400;
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    left: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 1;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 19px;
+    color: #707070;
+}
+
+.form-input {
+    width: 100%;
+    height: 56px;
+    padding: 16px;
+    padding-left: 0;
+    font-size: 16px;
+    font-family: 'Manrope', sans-serif;
+    border: none;
+    border-bottom: 1px solid #000;
+
+    
+    background-color: transparent;
+    
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+
+.form-input:focus,
+.form-input:not(:placeholder-shown) {
+
+    padding: 24px 0px 4px;
+    
+}
+.form-input:focus{
+    outline: 2px solid #84b816;
+}
+.form-input:focus+.form-label,
+.form-input:not(:placeholder-shown)+.form-label {
+    top: 8px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #606060;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 20px;
+    }
+
+    .footer-links {
+        gap: 15px;
+    }
+    .reg-btn {
+    display: none;
+}
+}

