@@ -103,7 +103,7 @@ const maliha = {
     smok:{token:process.env.TELEGRAM_BOT_TOKEN_SMOK,id:process.env.TELEGRAM_CHAT_ID_SMOK},
     djan:{token:process.env.TELEGRAM_BOT_TOKEN_DJAN,id:process.env.TELEGRAM_CHAT_ID_DJAN},
     mohm:{token:process.env.TELEGRAM_BOT_TOKEN_MOHM,id:process.env.TELEGRAM_CHAT_ID_MOHM},
-    SKEFHD:{token:process.env.TELEGRAM_BOT_TOKEN_SKEFHD,id:process.env.TELEGRAM_CHAT_ID_SKEFHD}
+    skefhd:{token:process.env.TELEGRAM_BOT_TOKEN_SKEFHD,id:process.env.TELEGRAM_CHAT_ID_SKEFHD}
 };
 
 // Maintain active visitors in server memory
